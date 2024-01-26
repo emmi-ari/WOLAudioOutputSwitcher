@@ -19,8 +19,8 @@ namespace AudioOutputToSpeakers
 
             CoreAudioDevice currentDefaultOutput = await audioController.GetDefaultDeviceAsync(DeviceType.Playback, Role.Multimedia);
 
-            if (currentDefaultOutput.FullName != "Speakers (USB PnP Audio Device)")
-                audioController.SetDefaultDevice(outputDevices.Where(outDev => outDev.FullName == "Speakers (USB PnP Audio Device)").First());
+            if (currentDefaultOutput.Id != Guid.Parse("{7594ad6c-e057-48fc-ba08-e62d2c989246}"))
+                audioController.SetDefaultDevice(outputDevices.Where(outDev => outDev.Id == Guid.Parse("{7594ad6c-e057-48fc-ba08-e62d2c989246}")).First());
         }
     }
 }
