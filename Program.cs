@@ -22,7 +22,7 @@ namespace AudioOutputToSpeakers
             CoreAudioDevice currentDefaultOutput = await audioController.GetDefaultDeviceAsync(DeviceType.Playback, Role.Multimedia);
 
             if (currentDefaultOutput.Id != _speakerId)
-                audioController.SetDefaultDevice(outputDevices.Where(outDev => outDev.Id == _speakerId).First());
+                await audioController.SetDefaultDeviceAsync(outputDevices.Where(outDev => outDev.Id == _speakerId).First());
         }
     }
 }
