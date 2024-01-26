@@ -7,6 +7,8 @@ namespace AudioOutputToSpeakers
 {
     internal class Program
     {
+        private static readonly Guid _speakerId = Guid.Parse("{7594ad6c-e057-48fc-ba08-e62d2c989246}");
+
         private static Task Main() => new Program().MainAsync();
 
         [SuppressMessage("Performance", "CA1822:Mark members as static")]
@@ -19,8 +21,8 @@ namespace AudioOutputToSpeakers
 
             CoreAudioDevice currentDefaultOutput = await audioController.GetDefaultDeviceAsync(DeviceType.Playback, Role.Multimedia);
 
-            if (currentDefaultOutput.Id != Guid.Parse("{7594ad6c-e057-48fc-ba08-e62d2c989246}"))
-                audioController.SetDefaultDevice(outputDevices.Where(outDev => outDev.Id == Guid.Parse("{7594ad6c-e057-48fc-ba08-e62d2c989246}")).First());
+            if (currentDefaultOutput.Id != _speakerId)
+                audioController.SetDefaultDevice(outputDevices.Where(outDev => outDev.Id == _speakerId).First());
         }
     }
 }
